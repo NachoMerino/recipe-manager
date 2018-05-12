@@ -1,5 +1,5 @@
 {
-  "name": "node-react-boilerplate",
+  "name": "recipe-manager-server",
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn start",
@@ -7,7 +7,10 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "multer": "^1.3.0",
+    "mysql": "^2.15.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"

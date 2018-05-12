@@ -1,38 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Navbar from './components/navbar';
+
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
+
   state = {
-    response: ''
+    categories: []
   };
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
+    this.callApi('/api/recipes-type')
+      .then(res => this.setState({ categories: res }))
       .catch(err => console.log(err));
   }
 
-  callApi = async () => {
-    const response = await fetch('/api/hello');
+  callApi = async (ENDPOINT) => {
+    const response = await fetch(ENDPOINT);
     const body = await response.json();
-
     if (response.status !== 200) throw Error(body.message);
-
     return body;
   };
   
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">{this.state.response}</p>
+      <div className="main">
+      <Navbar categories={[...this.state.categories]}/>       
       </div>
     );
   }
 }
-
-export default App;
