@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
 
 // Components
 import Card from '../card';
@@ -12,25 +11,24 @@ export default class Selector extends Component {
   };
 
   showSubCategorie = index => {
-    console.log('showSubCategorie')
     const items = [...this.state.items];
     const catPath = `${this.props.categorie}/${items[index].name}`
     this.callApi(`/api/${catPath}`)
       .then(res => this.setState({
         items: res,
-        toRender: 'subCategorie'
+        catPath
       }))
       .catch(err => console.log(err));
   }
 
   showFinalCard = index => {
-    console.log('showFinalCard')
     const items = [...this.state.items];
-    const catPath = `${this.props.categorie}/${items[index].cooking_categories_ID}/${items[index].id}`
+    const catPath = `${this.props.categorie}-id/${items[index].id}`
     this.callApi(`/api/${catPath}`)
       .then(res => this.setState({
         items: res,
-        toRender: 'finalCard'
+         catPath,
+        finalCard: true
       }))
       .catch(err => console.log(err));
   }
@@ -50,12 +48,32 @@ export default class Selector extends Component {
   
   render() {
     let whatToRender = (
-      this.state.items.map((item, index) => <Card key={item.id} toRender={this.state.toRender} showSubCategorie={()=>{this.showSubCategorie(index)}} showFinalCard={()=>{this.showFinalCard(index)}} categorie={this.props.categorie} name={item.name} picture={item.picture}/> )
-      )
-    if(this.state.subCategorie === 'finalCard'){
-      whatToRender = (
-        this.state.items.map((item, index) => <FinalCard key={item.id} name={item.name} picture={item.picture}/>)
+      this.state.items.map((item, index) => {
+        return(
+          <Card
+            key={item.id}
+            path={this.state.catPath}
+            toRender={this.state.toRender}
+            showSubCategorie={()=>{this.showSubCategorie(index)}}
+            showFinalCard={()=>{this.showFinalCard(index)}}
+            categorie={this.props.categorie}
+            name={item.name}
+            picture={item.picture}
+          />
         )
+      })
+    )
+    if(this.state.finalCard){
+      whatToRender = (
+        this.state.items.map(item => {
+          return(
+            <FinalCard
+              key={item.id}
+              item={item}
+            />
+          )
+        })
+      )
     }
     return (
       <React.Fragment>

@@ -20,12 +20,10 @@ const styles = {
 };
 
 function SimpleCard(props) {
-  console.log('toRender',props.toRender)
-
   const { classes } = props;
   return (
     <React.Fragment>
-      <div onClick={props.showSubCategorie}>
+      <div onClick={props.path ? props.showFinalCard : props.showSubCategorie}>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="headline" component="h1">
