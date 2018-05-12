@@ -23,7 +23,7 @@ function SimpleCard(props) {
   const { classes } = props;
   return (
     <React.Fragment>
-      <div onClick={props.path ? props.showFinalCard : props.showSubCategorie}>
+      <div onClick={props.showSubCategorie}>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="headline" component="h1">
