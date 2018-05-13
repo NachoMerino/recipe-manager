@@ -6,9 +6,6 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import Typography from 'material-ui/Typography';
 //
 import Toolbar from 'material-ui/Toolbar';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
 // Components
 import Selector from '../selector';
 
@@ -36,19 +33,16 @@ const styles = theme => ({
 
 class NavBar extends React.Component {
   state = {
-      value: 0,
-      reload: false
-  };
+    value: 0
+  }
 
-  handleChange = (event, value) => {
-    this.setState(prevState => { return {reload: !prevState.reload}})
+  handleChange = (event, value) => {  
     this.setState({ value });
-  };
+  }
 
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-    console.log('render navbar', this.props)
     return (
 
       <div className={classes.root}>
@@ -58,7 +52,7 @@ class NavBar extends React.Component {
             ICON HERE
           </Typography>
           <Tabs value={value} onChange={this.handleChange}>
-            {this.props.categories.map( categorie => <Tab onClick={this.handleChange} key={categorie.id} label={categorie.name} />)}
+            {this.props.categories.map( categorie => <Tab key={categorie.id} label={categorie.name} />)}
           </Tabs>
         </Toolbar> 
         </AppBar>

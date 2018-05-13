@@ -27,7 +27,6 @@ const styles = {
 };
 
 function FinalCard(props) {
-  console.log('item',props.item)
   const { classes } = props;
   return (
     <Card className={classes.card}>

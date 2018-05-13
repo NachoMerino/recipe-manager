@@ -6,11 +6,16 @@ import Card from '../card';
 import FinalCard from '../card/finalCard';
 import RecipeReviewCard from '../card/RecipeReviewCard';
 
+let baseState
 export default class Selector extends Component {
 
-  state = {
-    items: []
-  };
+  constructor(props){
+    super()
+    this.state = {
+      items: []
+    };
+    baseState = this.state;
+  }
 
   showSubCategorie = index => {
     const items = [...this.state.items];
@@ -50,7 +55,24 @@ export default class Selector extends Component {
     return body;
   };
   
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(prevState !== baseState){
+      return {
+        catPath: 'toDelete',
+        recipeReviewCard: null,
+        finalCard: null
+      }
+    }
+    return null
+    
+  }
   render() {
+    if(this.state.catPath === 'toDelete'){
+      delete this.state.catPath;
+      delete this.state.recipeReviewCard;
+      delete this.state.finalCard;
+      this.componentDidMount()
+    }
     let finalCardRender;
     let whatToRender = (
       this.state.items.map((item, index) => {
