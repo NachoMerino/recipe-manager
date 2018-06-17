@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Card, { CardContent } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import { Card, CardContent, Typography } from '@material-ui/core';
 
 const styles = {
   card: {
@@ -10,26 +9,36 @@ const styles = {
     padding: '0 0 1rem 0',
     margin: '0 0 1rem 0'
   },
+  container: {
+    width:  '560px',
+    height: '373px',
+    position: 'relative',
+    overflow:'hidden'
+  },
   picture: {
-    width: '100%',
-    height: 'auto',
-  },
-  pos: {
-    marginBottom: 12,
-  },
+    width:  '100%',
+    position: 'absolute',
+    right: '0',
+    left: '0',
+    top: '0',
+    bottom: '0',
+    margin: 'auto auto',
+  }
 };
 
-function SimpleCard(props) {
-  const { classes } = props;
+const SimpleCard = props => {
+  const { classes, name, picture, showSubCategorie } = props;
   return (
     <React.Fragment>
-      <div onClick={props.showSubCategorie}>
+      <div onClick={showSubCategorie}>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="headline" component="h1">
-            {props.name}
+            {name}
           </Typography>
-          <img className={classes.picture} src={props.picture} alt=""/>
+          <div className={classes.container}>
+            <img className={classes.picture} src={picture} alt=""/>
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -7,11 +7,7 @@ const port = process.env.PORT || 5000;
 
 // define a simple route
 app.get('/api', (req, res) => {
-  res.json({ 'express': 'Welcome to Web Recepies application REST-ful API.' });
-});
-
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello from Web Recepies' });
+  res.json({ 'express': 'Welcome to Web Recipes application REST-full API.' });
 });
 
 // Retrieve all type of Recipes
