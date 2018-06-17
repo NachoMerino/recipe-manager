@@ -7,6 +7,7 @@ import RecipeReviewCard from '../card/RecipeReviewCard';
 // helpers
 import { randomNum, callApi } from '../../helpers';
 
+let baseState
 export default class Selector extends Component {
 
   state = {
