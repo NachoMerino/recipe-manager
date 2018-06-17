@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {Typography, Toolbar, AppBar, Tabs, Tab, Button } from '@material-ui/core';
-import { Add as AddIcon  } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
+import { Add as AddIcon, Menu as MenuIcon  } from '@material-ui/icons';
 // Components
 import Selector from '../selector';
 import TabContainer from './TabContainer'
@@ -88,7 +89,7 @@ class NavBar extends React.Component {
   }
 }
 
-ButtonAppBar.propTypes = {
+NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
