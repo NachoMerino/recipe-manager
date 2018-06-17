@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './components/navbar';
+// helper
+import { callApi } from './helpers';
 
 import './App.css';
 
@@ -10,17 +12,10 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    this.callApi('/api/recipes-type')
+    callApi('/api/recipes-type')
       .then(res => this.setState({ categories: res }))
       .catch(err => console.log(err));
   }
-
-  callApi = async (ENDPOINT) => {
-    const response = await fetch(ENDPOINT);
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  };
   
   render() {
     return (

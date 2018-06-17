@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Grid from 'material-ui/Grid';
-import { withStyles } from 'material-ui/styles';
-import Card, { CardContent } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
-
-//
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import {Grid, Card, CardContent, Typography, Divider, Paper } from '@material-ui/core';
 
 const styles = {
   card: {
@@ -20,60 +14,56 @@ const styles = {
   picture: {
     width: '100%',
     height: 'auto',
-  },
-  pos: {
-    marginBottom: 12,
-  },
+  }
 };
 
-function FinalCard(props) {
-  console.log('item',props.item)
-  const { classes } = props;
+const FinalCard = props => {
+  const { classes, item } = props;
   return (
     <Card className={classes.card}>
       <CardContent>
         <Grid container spacing={24}>
           <Grid item xs={4}>
           <Paper>
-            <img className={classes.picture} src={props.item.picture} alt=""/>
+            <img className={classes.picture} src={item.picture} alt={item.name}/>
             <Typography variant="headline" component="h1">
-              {props.item.name}
+              {item.name}
             </Typography>
           </Paper>
           </Grid>
           <Grid className={classes.cardContent} item xs={8}>
             <Typography variant="headline" component="h1">
-              {props.item.long_name}
+              {item.long_name}
             </Typography>
             <Divider />
             <Grid container spacing={8}>
               <Grid item xs={6}>
                 <Typography component="p">
-                  {props.item.ingredients}
+                  {item.ingredients}
                 </Typography>
                 <Divider />
               </Grid>
               <Grid item xs={6}>
                 <Typography component="p">
-                  {props.item.ingredients}
+                  {item.ingredients}
                 </Typography>
                 <Divider />
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="subheading" component="h3">
-                  Notes: {props.item.notes}
+                  Notes: {item.notes}
                 </Typography>
                 <Divider />
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="subheading" component="h3">
-                  Nutrition: {props.item.nutrition}
+                  Nutrition: {item.nutrition}
                 </Typography>
                 <Divider />
               </Grid>
               <Grid item xs={12}>
                 <Typography component="p">
-                  Recipe: {props.item.text}
+                  Recipe: {item.text}
                 </Typography>
               </Grid>
             </Grid>

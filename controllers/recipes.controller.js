@@ -50,7 +50,7 @@ const upload = multer({
 }).single('myFile');
 
 // check type file
-function checkFileType(file, callback) {
+const checkFileType = (file, callback) => {
   // Allowed ext
   const filetypes = /jpeg|jpg|png|gif/;
   // check ext
